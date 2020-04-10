@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AdsPublisher.Application.DTO\AdsPublisher.Application.DTO.csproj" />
+    <ProjectReference Include="..\AdsPublisher.Transversal.Common\AdsPublisher.Transversal.Common.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.30" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AdsPublisher.Domain.Entity\AdsPublisher.Domain.Entity.csproj" />
+    <ProjectReference Include="..\AdsPublisher.InfraStructure.Interface\AdsPublisher.InfraStructure.Interface.csproj" />
+    <ProjectReference Include="..\AdsPublisher.Transversal.Common\AdsPublisher.Transversal.Common.csproj" />
+  </ItemGroup>
+
+</Project>
