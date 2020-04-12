@@ -90,6 +90,14 @@ namespace AdsPublisher.Services.WebAPIRest
             services.AddScoped<IMicroEmpresasDomain, MicroEmpresasDomain>();
             services.AddScoped<IMicroEmpresasRepository, MicroEmpresasRepository>();
 
+            services.AddScoped<IPQRSApplication, PQRSApplication>();
+            services.AddScoped<IPQRSDomain, PQRSDomain>();
+            services.AddScoped<IPQRSRepository, PQRSRepository>();
+
+            services.AddScoped<IParametrosApplication, ParametrosApplication>();
+            services.AddScoped<IParametrosDomain, ParametrosDomain>();
+            services.AddScoped<IParametrosRepository, ParametrosRepository>();
+
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
