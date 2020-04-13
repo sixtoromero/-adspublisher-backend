@@ -27,7 +27,9 @@ namespace AdsPublisher.Transversal.Mapper
             CreateMap<PQRS, PQRSDTO>().ReverseMap();
             CreateMap<Roles, RolesDTO>().ReverseMap();
             CreateMap<SubCategoria, SubCategoriaDTO>().ReverseMap();
-            CreateMap<Usuarios, UsuariosDTO>().ReverseMap();            
+            CreateMap<Usuarios, UsuariosDTO>().ReverseMap();
+            CreateMap<DescriptionDynamic, DescriptionDynamicDTO>().ReverseMap();
+
         }
     }
 }

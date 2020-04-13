@@ -12,5 +12,6 @@ namespace AdsPublisher.Domain.Entity
         public string Descripcion { get; set; }
         public int IDCliente { get; set; }
         public DateTime? FechaCreacion { get; set; }
+        public string TipoPeticion { get; set; }
     }
 }

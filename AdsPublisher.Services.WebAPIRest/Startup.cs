@@ -98,6 +98,10 @@ namespace AdsPublisher.Services.WebAPIRest
             services.AddScoped<IParametrosDomain, ParametrosDomain>();
             services.AddScoped<IParametrosRepository, ParametrosRepository>();
 
+            services.AddScoped<IDescriptionDynamicApplication, DescriptionDynamicApplication>();
+            services.AddScoped<IDescriptionDynamicDomain, DescriptionDynamicDomain>();
+            services.AddScoped<IDescriptionDynamicRepository, DescriptionDynamicRepository>();
+
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
