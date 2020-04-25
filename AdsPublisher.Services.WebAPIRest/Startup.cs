@@ -102,6 +102,14 @@ namespace AdsPublisher.Services.WebAPIRest
             services.AddScoped<IDescriptionDynamicDomain, DescriptionDynamicDomain>();
             services.AddScoped<IDescriptionDynamicRepository, DescriptionDynamicRepository>();
 
+            services.AddScoped<IFacturasApplication, FacturasApplication>();
+            services.AddScoped<IFacturasDomain, FacturasDomain>();
+            services.AddScoped<IFacturasRepository, FacturasRepository>();
+
+            services.AddScoped<IPlanesApplication, PlanesApplication>();
+            services.AddScoped<IPlanesDomain, PlanesDomain>();
+            services.AddScoped<IPlanesRepository, PlanesRepository>();
+
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);

@@ -12,5 +12,6 @@ namespace AdsPublisher.Application.DTO
         public decimal Precio { get; set; }
         public string Detalle { get; set; }
         public DateTime? FechaCreacion { get; set; }
+        public bool Estado { get; set; }
     }
 }

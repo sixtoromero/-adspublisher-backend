@@ -17,5 +17,7 @@ namespace AdsPublisher.Application.DTO
         public string Longitud { get; set; }
         public string Latitud { get; set; }
         public DateTime? FechaCreacion { get; set; }
+
+        public int IDPlan { get; set; }
     }
 }

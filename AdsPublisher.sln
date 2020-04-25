@@ -45,6 +45,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdsPublisher.Services.WebAP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdsPublisher.Services.WebApi", "AdsPublisher.Services.WebApi\AdsPublisher.Services.WebApi.csproj", "{1AEBA5ED-9896-483E-B4BD-759A8392B1BE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{812BA84D-D505-479D-98C5-10FF684E4354}"
+	ProjectSection(SolutionItems) = preProject
+		ScriptsBD\Scripts.sql = ScriptsBD\Scripts.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -136,6 +141,7 @@ Global
 		{290FFBCB-09FB-4CF3-88DB-D2A6F2FA5F8A} = {D9F64E8D-21D1-4E38-9100-5FBF45D8D273}
 		{01A7293B-5D62-4BFC-A253-8168E343EF03} = {E2F2341A-4B4A-46B6-B86C-CDF4F2F545BB}
 		{1AEBA5ED-9896-483E-B4BD-759A8392B1BE} = {E2F2341A-4B4A-46B6-B86C-CDF4F2F545BB}
+		{812BA84D-D505-479D-98C5-10FF684E4354} = {008B42E7-7FFE-4DCB-96F0-60522FB6490D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CAA678F1-4D44-4E9C-BF42-B784348FB2A3}
