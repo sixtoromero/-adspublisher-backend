@@ -13,5 +13,7 @@ namespace AdsPublisher.Domain.Entity
         public string Detalle { get; set; }
         public DateTime? FechaCreacion { get; set; }
         public bool Estado { get; set; }
+        public int NroMeses { get; set; }
+
     }
 }

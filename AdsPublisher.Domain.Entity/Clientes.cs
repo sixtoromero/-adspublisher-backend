@@ -15,8 +15,15 @@ namespace AdsPublisher.Domain.Entity
         public DateTime? FechaCreacion { get; set; }
         public bool Activo { get; set; }
         public string Foto { get; set; }
+
         //Propiedades no propias de el modelo        
         public string Password { get; set; }
         public string Token { get; set; }
+
+        //Propiedades que no son del modelo
+        public int IDFactura { get; set; }
+        public int IDMicroempresa { get; set; }
+        public int IDPlan { get; set; }
+
     }
 }

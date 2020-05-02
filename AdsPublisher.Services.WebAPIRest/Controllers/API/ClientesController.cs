@@ -72,6 +72,24 @@ namespace AdsPublisher.Services.WebAPIRest.Controllers.api
             }
         }
 
+        //[AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> SendMailAsync([FromBody]ClientesDTO clienteDto)
+        {
+            if (clienteDto == null)
+                return BadRequest();
+
+            var response = await _clienteApplication.SendMailAsync(clienteDto);
+            if (response.IsSuccess)
+            {
+                return Ok(response);
+            }
+            else
+            {
+                return BadRequest(response.Message);
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> UpdateAsync([FromBody]ClientesDTO clienteDto)
         {
@@ -106,6 +124,7 @@ namespace AdsPublisher.Services.WebAPIRest.Controllers.api
             return Ok("OK");
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetActivation(string email)
         {

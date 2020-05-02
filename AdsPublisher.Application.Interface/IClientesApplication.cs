@@ -15,6 +15,8 @@ namespace AdsPublisher.Application.Interface
         Task<Response<ClientesDTO>> GetAsync(int? IDCliente);
         Task<Response<IEnumerable<ClientesDTO>>> GetAllAsync();
         Task<Response<bool>> SetActivation(string Correo);
-        Task<Response<ClientesDTO>> GetLoginAsync(string Correo, string Password);        
+        Task<Response<ClientesDTO>> GetLoginAsync(string Correo, string Password);
+        Task<Response<bool>> SendMailAsync(ClientesDTO cliente);
+
     }
 }

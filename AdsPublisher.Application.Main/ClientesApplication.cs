@@ -166,5 +166,27 @@ namespace AdsPublisher.Application.Main
 
             return response;
         }
+
+        public async Task<Response<bool>> SendMailAsync(ClientesDTO clienteDto)
+        {
+            var response = new Response<bool>();
+            try
+            {
+                var model = _mapper.Map<Clientes>(clienteDto);
+                response.Data = await _clientesDomain.SendMailAsync(model);
+                if (response.Data)
+                {
+                    response.IsSuccess = true;
+                    response.Message = "Correo enviado exitosamente!";
+                }
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+            }
+
+            return response;
+        }
     }
 }

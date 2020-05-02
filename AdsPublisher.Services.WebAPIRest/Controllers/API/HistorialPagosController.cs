@@ -21,47 +21,20 @@ namespace AdsPublisher.Services.WebAPIRest.Controllers.API
     [Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class FacturasController : Controller
+    public class HistorialPagosController : Controller
     {
-        private readonly IFacturasApplication _Application;
+        private readonly IHistorialPagosApplication _Application;
         private readonly AppSettings _appSettings;
 
-        public FacturasController(IFacturasApplication _Application,
+        public HistorialPagosController(IHistorialPagosApplication AppApplication,
                                   IOptions<AppSettings> appSettings)
         {
-            this._Application = _Application;
+            _Application = AppApplication;
             _appSettings = appSettings.Value;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllAsync(int ID)
-        {
-            Response<IEnumerable<FacturasDTO>> response = new Response<IEnumerable<FacturasDTO>>();
-
-            try
-            {
-                response = await _Application.GetAllAsync(ID);
-                if (response.IsSuccess)
-                {
-                    return Ok(response);
-                }
-                else
-                {
-                    return BadRequest(response);
-                }
-            } 
-            catch (Exception ex)
-            {
-                response.Data = null;
-                response.IsSuccess = false;
-                response.Message = ex.Message;
-
-                return BadRequest(response);
-            }
-        }
-
         [HttpPost]
-        public async Task<IActionResult> UpdateAsync([FromBody]FacturasDTO modelDto)
+        public async Task<IActionResult> InsertAsync([FromBody]Historial_PagosDTO modelDto)
         {
             Response<bool> response = new Response<bool>();
 
@@ -70,7 +43,7 @@ namespace AdsPublisher.Services.WebAPIRest.Controllers.API
                 if (modelDto == null)
                     return BadRequest();
 
-                response = await _Application.UpdateAsync(modelDto);
+                response = await _Application.InsertAsync(modelDto);
                 if (response.IsSuccess)
                 {
                     return Ok(response);
@@ -91,13 +64,13 @@ namespace AdsPublisher.Services.WebAPIRest.Controllers.API
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAsync(int ID)
+        public async Task<IActionResult> GetAllAsync(int ID)
         {
-            Response<FacturasDTO> response = new Response<FacturasDTO>();
+            Response<IEnumerable<Historial_PagosDTO>> response = new Response<IEnumerable<Historial_PagosDTO>>();
 
             try
-            {
-                response = await _Application.GetAsync(ID);
+            {                
+                response = await _Application.GetAllAsync(ID);
                 if (response.IsSuccess)
                 {
                     return Ok(response);

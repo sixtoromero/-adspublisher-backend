@@ -110,6 +110,10 @@ namespace AdsPublisher.Services.WebAPIRest
             services.AddScoped<IPlanesDomain, PlanesDomain>();
             services.AddScoped<IPlanesRepository, PlanesRepository>();
 
+            services.AddScoped<IHistorialPagosApplication, HistorialPagosApplication>();
+            services.AddScoped<IHistorialPagosDomain, HistorialPagosDomain>();
+            services.AddScoped<IHistorialPagosRepository, HistorialPagosRepository>();
+
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);

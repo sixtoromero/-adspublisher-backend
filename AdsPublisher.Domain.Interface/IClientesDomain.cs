@@ -15,5 +15,8 @@ namespace AdsPublisher.Domain.Interface
         Task<IEnumerable<Clientes>> GetAllAsync();
         Task<bool> SetActivation(string Correo);
         Task<Clientes> GetLoginAsync(string Correo, string Password);
+        Task<bool> SendMailAsync(Clientes cliente);
+        Task<bool> SendEmailInfoPago(Clientes user);
+
     }
 }
