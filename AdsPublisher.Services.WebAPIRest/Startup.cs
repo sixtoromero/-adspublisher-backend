@@ -114,6 +114,14 @@ namespace AdsPublisher.Services.WebAPIRest
             services.AddScoped<IHistorialPagosDomain, HistorialPagosDomain>();
             services.AddScoped<IHistorialPagosRepository, HistorialPagosRepository>();
 
+            services.AddScoped<ICategoriaApplication, CategoriaApplication>();
+            services.AddScoped<ICategoriaDomain, CategoriaDomain>();
+            services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+
+            services.AddScoped<ISubCategoriasApplication, SubCategoriasApplication>();
+            services.AddScoped<ISubCategoriasDomain, SubCategoriasDomain>();
+            services.AddScoped<ISubCategoriasRepository, SubCategoriasRepository>();
+
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
