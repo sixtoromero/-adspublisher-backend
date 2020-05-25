@@ -122,6 +122,10 @@ namespace AdsPublisher.Services.WebAPIRest
             services.AddScoped<ISubCategoriasDomain, SubCategoriasDomain>();
             services.AddScoped<ISubCategoriasRepository, SubCategoriasRepository>();
 
+            services.AddScoped<ICategoriasPorMicroEmpresasApplication, CategoriasPorMicroEmpresasApplication>();
+            services.AddScoped<ICategoriasPorMicroEmpresasDomain, CategoriasPorMicroEmpresasDomain>();
+            services.AddScoped<ICategoriasPorMicroEmpresasRepository, CategoriasPorMicroEmpresasRepository>();
+
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);

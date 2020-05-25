@@ -29,6 +29,7 @@ namespace AdsPublisher.Transversal.Mapper
             CreateMap<SubCategoria, SubCategoriaDTO>().ReverseMap();
             CreateMap<Usuarios, UsuariosDTO>().ReverseMap();
             CreateMap<DescriptionDynamic, DescriptionDynamicDTO>().ReverseMap();
+            CreateMap<Filter, FilterDTO>().ReverseMap();
 
         }
     }

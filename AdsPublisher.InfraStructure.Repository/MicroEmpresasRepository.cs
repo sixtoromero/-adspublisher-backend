@@ -20,6 +20,13 @@ namespace AdsPublisher.InfraStructure.Repository
 
         public async Task<bool> InsertAsync(MicroEmpresas model)
         {
+            string SubCategorias = string.Empty;
+            foreach (var item in model.SubCategorias)
+            {
+                SubCategorias = SubCategorias + item + ",";
+            }
+            SubCategorias = SubCategorias.Substring(0, SubCategorias.Length - 1);
+
             using (var connection = _connectionFactory.GetConnection)
             {
                 var query = "uspMicroEmpresaInsert";
@@ -33,6 +40,8 @@ namespace AdsPublisher.InfraStructure.Repository
                 parameters.Add("Direccion", model.Direccion);
                 parameters.Add("Longitud", model.Longitud);
                 parameters.Add("Latitud", model.Latitud);
+                parameters.Add("SubCategorias", SubCategorias);
+                parameters.Add("IDCategoria", model.IDCategoria);
 
                 //Persistir la info en la bd
                 var result = connection.QuerySingle<string>(query, param: parameters, commandType: System.Data.CommandType.StoredProcedure);
@@ -57,6 +66,8 @@ namespace AdsPublisher.InfraStructure.Repository
                 parameters.Add("Direccion", model.Direccion);
                 parameters.Add("Longitud", model.Longitud);
                 parameters.Add("Latitud", model.Latitud);
+                parameters.Add("SubCategorias", model.SubCategorias);
+                parameters.Add("IDCategoria", model.IDCategoria);
 
                 //Persistir la info en la bd
                 var result = connection.QuerySingle<string>(query, param: parameters, commandType: System.Data.CommandType.StoredProcedure);
@@ -101,6 +112,30 @@ namespace AdsPublisher.InfraStructure.Repository
                 var parameters = new DynamicParameters();
 
                 parameters.Add("IDCliente", IDCliente);
+
+                var result = await connection.QueryAsync<MicroEmpresas>(query, param: parameters, commandType: CommandType.StoredProcedure);
+                return result;
+            }
+        }
+
+        public async Task<IEnumerable<MicroEmpresas>> GetFilterAsync(Filter ifilter)
+        {
+            string SubCategorias = string.Empty;
+            foreach (var item in ifilter.IDSubCategoria)
+            {
+                SubCategorias = SubCategorias + item + ",";
+            }
+
+            SubCategorias = SubCategorias.Length > 0 ? SubCategorias.Substring(0, SubCategorias.Length - 1) : string.Empty;
+
+            using (var connection = _connectionFactory.GetConnection)
+            {
+                var query = "UspGetFiltroMicroEmpresas";
+                var parameters = new DynamicParameters();
+
+                parameters.Add("SubCategorias", SubCategorias);
+                parameters.Add("Direccion", ifilter.Direccion == null ? string.Empty : ifilter.Direccion);
+                parameters.Add("Microempresa", ifilter.Microempresa == null ? string.Empty : ifilter.Microempresa);
 
                 var result = await connection.QueryAsync<MicroEmpresas>(query, param: parameters, commandType: CommandType.StoredProcedure);
                 return result;

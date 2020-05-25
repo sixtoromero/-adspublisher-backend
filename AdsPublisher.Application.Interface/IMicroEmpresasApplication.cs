@@ -14,5 +14,6 @@ namespace AdsPublisher.Application.Interface
         Task<Response<bool>> DeleteAsync(int IDMicroEmpresa);
         Task<Response<MicroEmpresasDTO>> GetAsync(int IDMicroEmpresa);
         Task<Response<IEnumerable<MicroEmpresasDTO>>> GetAllAsync(int IDCliente);
+        Task<Response<IEnumerable<MicroEmpresasDTO>>> GetFilterAsync(FilterDTO ifilter);
     }
 }

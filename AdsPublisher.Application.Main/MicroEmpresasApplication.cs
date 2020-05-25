@@ -131,5 +131,28 @@ namespace AdsPublisher.Application.Main
 
             return response;
         }
+
+        public async Task<Response<IEnumerable<MicroEmpresasDTO>>> GetFilterAsync(FilterDTO ifilter)
+        {
+            var response = new Response<IEnumerable<MicroEmpresasDTO>>();
+            try
+            {
+                var model = _mapper.Map<Filter>(ifilter);
+
+                var resp = await _Domain.GetFilterAsync(model);
+                response.Data = _mapper.Map<IEnumerable<MicroEmpresasDTO>>(resp);
+                if (response.Data != null)
+                {
+                    response.IsSuccess = true;
+                    response.Message = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+            }
+
+            return response;
+        }
     }
 }

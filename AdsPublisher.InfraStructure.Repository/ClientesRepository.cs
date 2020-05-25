@@ -40,6 +40,7 @@ namespace AdsPublisher.InfraStructure.Repository
             {
                 var query = "uspClientesInsert";
                 var parameters = new DynamicParameters();
+
                 parameters.Add("Nombres", cliente.Nombres);
                 parameters.Add("Apellidos", cliente.Apellidos);
                 parameters.Add("Sexo", cliente.Sexo);                

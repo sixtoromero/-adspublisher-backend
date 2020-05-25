@@ -46,5 +46,10 @@ namespace AdsPublisher.Domain.Core
             return await _microempresaRepository.GetAllAsync(IDCliente);
         }
 
+        public async Task<IEnumerable<MicroEmpresas>> GetFilterAsync(Filter ifilter)
+        {
+            return await _microempresaRepository.GetFilterAsync(ifilter);
+        }
+
     }
 }

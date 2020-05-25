@@ -174,5 +174,32 @@ namespace AdsPublisher.Services.WebAPIRest.Controllers.API
             }
         }
 
+        [HttpPost]
+        public async Task<IActionResult> GetFilterAsync([FromBody]FilterDTO modelDto)
+        {
+            Response<IEnumerable<MicroEmpresasDTO>> response = new Response<IEnumerable<MicroEmpresasDTO>>();
+
+            try
+            {
+                response = await _Application.GetFilterAsync(modelDto);
+                if (response.IsSuccess)
+                {
+                    return Ok(response);
+                }
+                else
+                {
+                    return BadRequest(response);
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Data = null;
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+
+                return BadRequest(response);
+            }
+        }
+
     }
 }

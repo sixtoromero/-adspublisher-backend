@@ -20,7 +20,7 @@ namespace AdsPublisher.Domain.Core
 
         public ClientesDomain(IClientesRepository clienteRepository, IPlanesRepository planRepository, IConfiguration _configuration)
         {
-            _clienteRepository = clienteRepository;            
+            _clienteRepository = clienteRepository;
             _planRepository = planRepository;
 
             Configuration = _configuration;
