@@ -51,6 +51,13 @@ namespace AdsPublisher.InfraStructure.Repository
 
         public async Task<bool> UpdateAsync(MicroEmpresas model)
         {
+            string SubCategorias = string.Empty;
+            foreach (var item in model.SubCategorias)
+            {
+                SubCategorias = SubCategorias + item + ",";
+            }
+            SubCategorias = SubCategorias.Substring(0, SubCategorias.Length - 1);
+
             using (var connection = _connectionFactory.GetConnection)
             {
                 var query = "uspMicroEmpresaUpdate";
@@ -60,13 +67,12 @@ namespace AdsPublisher.InfraStructure.Repository
                 parameters.Add("IDCliente", model.IDCliente);
                 parameters.Add("Nombre", model.Nombre);
                 parameters.Add("Descripcion", model.Descripcion);
-                parameters.Add("Fax", model.Fax);
                 parameters.Add("Telefono", model.Telefono);
                 parameters.Add("Celular", model.Celular);
                 parameters.Add("Direccion", model.Direccion);
                 parameters.Add("Longitud", model.Longitud);
                 parameters.Add("Latitud", model.Latitud);
-                parameters.Add("SubCategorias", model.SubCategorias);
+                parameters.Add("SubCategorias", SubCategorias);
                 parameters.Add("IDCategoria", model.IDCategoria);
 
                 //Persistir la info en la bd

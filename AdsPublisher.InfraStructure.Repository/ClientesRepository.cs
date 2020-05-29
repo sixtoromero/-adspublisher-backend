@@ -58,16 +58,33 @@ namespace AdsPublisher.InfraStructure.Repository
         {
             using (var connection = _connectionFactory.GetConnection)
             {
-                var query = "uspClientesUpdate";
+                string query = string.Empty;
                 var parameters = new DynamicParameters();
                 
-                parameters.Add("IDCliente", cliente.IDCliente);
-                parameters.Add("Nombres", cliente.Nombres);
-                parameters.Add("Apellidos", cliente.Apellidos);
-                parameters.Add("Sexo", cliente.Sexo);                
-                parameters.Add("FechaCumpleanos", cliente.FechaCumpleanos);
-                parameters.Add("Correo", cliente.Correo);
-                parameters.Add("Password", cliente.Password);
+                if (cliente.Password != null && cliente.Password != string.Empty)
+                {
+                    query = "uspClientesUpdate";
+
+                    parameters.Add("IDCliente", cliente.IDCliente);
+                    parameters.Add("Nombres", cliente.Nombres);
+                    parameters.Add("Apellidos", cliente.Apellidos);
+                    parameters.Add("Sexo", cliente.Sexo);
+                    parameters.Add("FechaCumpleanos", cliente.FechaCumpleanos);
+                    parameters.Add("Correo", cliente.Correo);
+                    parameters.Add("Password", cliente.Password);
+                } 
+                else
+                {
+                    query = "uspClientesInfoUpdate";
+
+                    parameters.Add("IDCliente", cliente.IDCliente);
+                    parameters.Add("Nombres", cliente.Nombres);
+                    parameters.Add("Apellidos", cliente.Apellidos);
+                    parameters.Add("Sexo", cliente.Sexo);
+                    parameters.Add("FechaCumpleanos", cliente.FechaCumpleanos);                    
+                }
+
+                
 
                 //Persistir la info en la bd
                 var result = connection.QuerySingle<string>(query, param: parameters, commandType: System.Data.CommandType.StoredProcedure);
