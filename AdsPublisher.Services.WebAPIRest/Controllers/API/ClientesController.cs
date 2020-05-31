@@ -148,8 +148,8 @@ namespace AdsPublisher.Services.WebAPIRest.Controllers.api
             }*/
             //var files = HttpContext.Request.Form.Files.Any(); 
 
-            var result = file.FileBase64;
-            FileUploadAPI image = new FileUploadAPI();
+            //var result = file.FileBase64;
+            //FileUploadAPI image = new FileUploadAPI();
 
             Response<string> resp = new Response<string>();
             
@@ -158,19 +158,19 @@ namespace AdsPublisher.Services.WebAPIRest.Controllers.api
 
             try
             {
-                if (image.files.Length > 0)
+                if (file.files.Length > 0)
                 {
-                    if (!Directory.Exists(_environment.WebRootPath + "\\Upload\\"))
+                    if (!Directory.Exists(_environment.ContentRootPath + "\\Upload\\"))
                     {
-                        Directory.CreateDirectory(_environment.WebRootPath + "\\Upload\\");
+                        Directory.CreateDirectory(_environment.ContentRootPath + "\\Upload\\");
                     }
 
-                    using (FileStream fileStream = System.IO.File.Create(_environment.WebRootPath + "\\Upload\\" + image.files.FileName))
+                    using (FileStream fileStream = System.IO.File.Create(_environment.ContentRootPath + "\\Upload\\" + file.files.FileName))
                     {
-                        await image.files.CopyToAsync(fileStream);
+                        await file.files.CopyToAsync(fileStream);
                         fileStream.Flush();
                         
-                        resp.Data = "\\Upload" + image.files.FileName;
+                        resp.Data = "\\Upload\\" + file.files.FileName;
                         resp.IsSuccess = true;
                         resp.Message = string.Empty;
                         return Ok(resp);

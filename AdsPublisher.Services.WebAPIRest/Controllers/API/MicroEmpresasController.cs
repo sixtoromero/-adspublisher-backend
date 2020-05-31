@@ -201,5 +201,33 @@ namespace AdsPublisher.Services.WebAPIRest.Controllers.API
             }
         }
 
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IActionResult> GetPagosCulminados()
+        {
+            Response<bool> response = new Response<bool>();
+
+            try
+            {
+                response = await _Application.SetPagosCulminados();
+                if (response.IsSuccess)
+                {
+                    return Ok(response);
+                }
+                else
+                {
+                    return BadRequest(response);
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Data = false;
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+
+                return BadRequest(response);
+            }
+        }
+
     }
 }

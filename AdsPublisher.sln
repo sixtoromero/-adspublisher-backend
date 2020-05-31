@@ -50,6 +50,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{812B
 		ScriptsBD\Scripts.sql = ScriptsBD\Scripts.sql
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdsPublisher.Services.Job", "AdsPublisher.Services.Job\AdsPublisher.Services.Job.csproj", "{16E11A3A-69D7-4E52-9F73-FEF389178F84}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -116,6 +118,10 @@ Global
 		{1AEBA5ED-9896-483E-B4BD-759A8392B1BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AEBA5ED-9896-483E-B4BD-759A8392B1BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AEBA5ED-9896-483E-B4BD-759A8392B1BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16E11A3A-69D7-4E52-9F73-FEF389178F84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16E11A3A-69D7-4E52-9F73-FEF389178F84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16E11A3A-69D7-4E52-9F73-FEF389178F84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16E11A3A-69D7-4E52-9F73-FEF389178F84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -142,6 +148,7 @@ Global
 		{01A7293B-5D62-4BFC-A253-8168E343EF03} = {E2F2341A-4B4A-46B6-B86C-CDF4F2F545BB}
 		{1AEBA5ED-9896-483E-B4BD-759A8392B1BE} = {E2F2341A-4B4A-46B6-B86C-CDF4F2F545BB}
 		{812BA84D-D505-479D-98C5-10FF684E4354} = {008B42E7-7FFE-4DCB-96F0-60522FB6490D}
+		{16E11A3A-69D7-4E52-9F73-FEF389178F84} = {E2F2341A-4B4A-46B6-B86C-CDF4F2F545BB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CAA678F1-4D44-4E9C-BF42-B784348FB2A3}

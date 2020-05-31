@@ -154,5 +154,25 @@ namespace AdsPublisher.Application.Main
 
             return response;
         }
+
+        public async Task<Response<bool>> SetPagosCulminados()
+        {
+            var response = new Response<bool>();
+            try
+            {
+                response.Data = await _Domain.SetPagosCulminados();
+                if (response.Data)
+                {
+                    response.IsSuccess = true;
+                    response.Message = "Tarea ejecutada exitosamente";
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+            }
+
+            return response;
+        }        
     }
 }

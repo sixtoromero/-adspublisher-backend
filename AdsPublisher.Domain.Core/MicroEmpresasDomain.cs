@@ -51,5 +51,10 @@ namespace AdsPublisher.Domain.Core
             return await _microempresaRepository.GetFilterAsync(ifilter);
         }
 
+        public async Task<bool> SetPagosCulminados()
+        {
+            return await _microempresaRepository.SetPagosCulminados();
+        }
+
     }
 }

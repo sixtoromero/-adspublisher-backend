@@ -14,5 +14,6 @@ namespace AdsPublisher.InfraStructure.Interface
         Task<MicroEmpresas> GetAsync(int IDMicroEmpresa);
         Task<IEnumerable<MicroEmpresas>> GetAllAsync(int IDCliente);
         Task<IEnumerable<MicroEmpresas>> GetFilterAsync(Filter ifilter);
+        Task<bool> SetPagosCulminados();
     }
 }

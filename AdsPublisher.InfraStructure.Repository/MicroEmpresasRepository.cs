@@ -148,5 +148,18 @@ namespace AdsPublisher.InfraStructure.Repository
             }
         }
 
+        public async Task<bool> SetPagosCulminados()
+        {
+            using (var connection = _connectionFactory.GetConnection)
+            {
+                var query = "UspSetHistorialPagosCulminados";
+
+                //Persistir la info en la bd
+                var result = await connection.QuerySingleAsync<string>(query, commandType: System.Data.CommandType.StoredProcedure);
+                return result == "success" ? true : false;
+            }
+        }
+
+
     }
 }
