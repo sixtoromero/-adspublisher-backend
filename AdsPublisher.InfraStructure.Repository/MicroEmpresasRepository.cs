@@ -90,9 +90,9 @@ namespace AdsPublisher.InfraStructure.Repository
 
                 parameters.Add("IDMicroEmpresa", IDMicroEmpresa);
 
-                var result = await connection.ExecuteAsync(query, param: parameters, commandType: CommandType.StoredProcedure);
-                return result > 0;
-
+                //var result = await connection.ExecuteAsync(query, param: parameters, commandType: CommandType.StoredProcedure);
+                var result = connection.QuerySingle<string>(query, param: parameters, commandType: System.Data.CommandType.StoredProcedure);
+                return result == "success" ? true : false;
             }
         }
 

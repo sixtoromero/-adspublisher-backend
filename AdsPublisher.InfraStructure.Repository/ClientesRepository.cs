@@ -72,6 +72,7 @@ namespace AdsPublisher.InfraStructure.Repository
                     parameters.Add("FechaCumpleanos", cliente.FechaCumpleanos);
                     parameters.Add("Correo", cliente.Correo);
                     parameters.Add("Password", cliente.Password);
+                    parameters.Add("Foto", cliente.Foto);
                 } 
                 else
                 {

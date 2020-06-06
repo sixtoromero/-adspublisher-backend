@@ -9,5 +9,6 @@ namespace AdsPublisher.Transversal.Utils
     {
         public IFormFile files { get; set; }
         public string FileBase64 { get; set; }
+        //public int? IDCliente { get; set; }
     }
 }

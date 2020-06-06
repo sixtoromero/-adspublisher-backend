@@ -53,7 +53,30 @@ namespace AdsPublisher.Services.WebAPIRest.Controllers.api
 
             return BadRequest(response.Message);
         }
-        
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> GetLoginInvitadoAsync()
+        {            
+            var response = new Response<string>();
+            try
+            {
+                response.Data = BuildTokenInvitado();
+                response.IsSuccess = true;
+                response.Message = string.Empty;
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Data = null;
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+                return BadRequest(response);
+            }
+            
+            
+        }
+
         [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> InsertAsync([FromBody]ClientesDTO clienteDto)
@@ -141,15 +164,8 @@ namespace AdsPublisher.Services.WebAPIRest.Controllers.api
         //public async Task<IActionResult> FileUpload([FromForm]FileUploadAPI image)
         public async Task<IActionResult> FileUpload([FromForm]FileUploadAPI file)
         {
-            /*
-            if (HttpContext.Request.Form.Files.Any())
-            {
-
-            }*/
-            //var files = HttpContext.Request.Form.Files.Any(); 
-
-            //var result = file.FileBase64;
-            //FileUploadAPI image = new FileUploadAPI();
+            var IDClienteHeader = Request.Headers["IDCliente"];
+            int.TryParse(IDClienteHeader, out int IDCliente);
 
             Response<string> resp = new Response<string>();
             
@@ -158,31 +174,67 @@ namespace AdsPublisher.Services.WebAPIRest.Controllers.api
 
             try
             {
-                if (file.files.Length > 0)
+                if (file.files != null)
                 {
-                    if (!Directory.Exists(_environment.ContentRootPath + "\\Upload\\"))
+                    if (file.files.Length > 0)
                     {
-                        Directory.CreateDirectory(_environment.ContentRootPath + "\\Upload\\");
-                    }
+                        if (!Directory.Exists(_environment.ContentRootPath + "\\Upload\\"))
+                        {
+                            Directory.CreateDirectory(_environment.ContentRootPath + "\\Upload\\");
+                        }
 
-                    using (FileStream fileStream = System.IO.File.Create(_environment.ContentRootPath + "\\Upload\\" + file.files.FileName))
-                    {
-                        await file.files.CopyToAsync(fileStream);
-                        fileStream.Flush();
-                        
-                        resp.Data = "\\Upload\\" + file.files.FileName;
-                        resp.IsSuccess = true;
-                        resp.Message = string.Empty;
-                        return Ok(resp);
+                        using (FileStream fileStream = System.IO.File.Create(_environment.ContentRootPath + "\\Upload\\" + file.files.FileName))
+                        {
+                            await file.files.CopyToAsync(fileStream);
+                            fileStream.Flush();
+
+                            resp.Data = "\\Upload\\" + file.files.FileName;
+                            resp.IsSuccess = true;
+                            resp.Message = string.Empty;
+                            
+                            var result = await _clienteApplication.GetAsync(IDCliente);
+
+                            if (result.IsSuccess)
+                            {
+                                ClientesDTO clienteDto = new ClientesDTO();
+                                clienteDto = result.Data;
+                                clienteDto.Foto = file.files.FileName;
+
+                                var response = await _clienteApplication.UpdateAsync(clienteDto);
+                                if (response.IsSuccess)
+                                {
+                                    return Ok(resp);
+                                }
+                                else
+                                {
+                                    return BadRequest(response.Message);
+                                }
+                            } else
+                            {
+                                resp.Data = null;
+                                resp.IsSuccess = false;
+                                resp.Message = "Ha ocurrido un error al actualizar la foto de perfil.";
+                            }
+
+                            return Ok(resp);
+                        }
                     }
-                } else
+                    else
+                    {
+                        resp.Data = null;
+                        resp.IsSuccess = false;
+                        resp.Message = "Al parecer no has seleccionado ningún archivo a cargar.";
+
+                        return BadRequest(resp);
+                    }
+                }else
                 {
                     resp.Data = null;
                     resp.IsSuccess = false;
-                    resp.Message = "Al parecer no has seleccionado ningún archivo a cargar.";
+                    resp.Message = "El valor de file es nulo";
 
                     return BadRequest(resp);
-                }
+                }            
             }
             catch (Exception ex)
             {
@@ -206,6 +258,29 @@ namespace AdsPublisher.Services.WebAPIRest.Controllers.api
                     new Claim(ClaimTypes.Name, usersDto.Data.IDCliente.ToString())
                 }),
                 
+                //Expires = DateTime.UtcNow.AddMinutes(1),
+                Expires = DateTime.UtcNow.AddHours(24),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
+                Issuer = _appSettings.IsSuer,
+                Audience = _appSettings.Audience
+
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var tokenString = tokenHandler.WriteToken(token);
+            return tokenString;
+        }
+
+        private string BuildTokenInvitado()
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, "0")
+                }),
+
                 //Expires = DateTime.UtcNow.AddMinutes(1),
                 Expires = DateTime.UtcNow.AddHours(24),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
