@@ -114,6 +114,10 @@ namespace AdsPublisher.Services.WebAPIRest
             services.AddScoped<IHistorialPagosDomain, HistorialPagosDomain>();
             services.AddScoped<IHistorialPagosRepository, HistorialPagosRepository>();
 
+            services.AddScoped<IHistorialRegistroApplication, HistorialRegistroApplication>();
+            services.AddScoped<IHistorialRegistroDomain, HistorialRegistroDomain>();
+            services.AddScoped<IHistorialRegistroRepository, HistorialRegistroRepository>();            
+
             services.AddScoped<ICategoriaApplication, CategoriaApplication>();
             services.AddScoped<ICategoriaDomain, CategoriaDomain>();
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();

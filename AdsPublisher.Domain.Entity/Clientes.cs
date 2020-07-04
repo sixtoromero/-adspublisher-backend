@@ -24,6 +24,7 @@ namespace AdsPublisher.Domain.Entity
         public int IDFactura { get; set; }
         public int IDMicroempresa { get; set; }
         public int IDPlan { get; set; }
+        public int IDUsuario { get; set; }
 
     }
 }

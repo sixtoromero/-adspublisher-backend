@@ -8,6 +8,7 @@ namespace AdsPublisher.Domain.Entity
     {
         public int IDHistorialReg { get; set; }
         public int IDMicroEmpresa { get; set; }
+        public int IDUsuario { get; set; }
         public string Descripcion { get; set; }
         public DateTime? FechaCreacion { get; set; }
     }

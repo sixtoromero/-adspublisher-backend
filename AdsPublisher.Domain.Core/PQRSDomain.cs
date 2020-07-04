@@ -13,7 +13,7 @@ namespace AdsPublisher.Domain.Core
     public class PQRSDomain : MailServer, IPQRSDomain
     {
         private readonly IPQRSRepository _Repository;
-        private readonly IClientesRepository _cRepository;
+        private readonly IClientesRepository _cRepository;        
         public IConfiguration Configuration { get; }
 
         public PQRSDomain(IPQRSRepository Repository, IClientesRepository clienteRepository, IConfiguration _configuration)
@@ -24,6 +24,7 @@ namespace AdsPublisher.Domain.Core
             Configuration = _configuration;
 
             senderMail = Configuration["MailServer:SenderMail"];
+            mailAdmon = Configuration["MailServer:MailAdmon"];
             password = Configuration["MailServer:Password"];
             host = Configuration["MailServer:Host"];
             port = int.Parse(Configuration["MailServer:Port"]);
@@ -126,10 +127,14 @@ namespace AdsPublisher.Domain.Core
                     "</div>";
                 #endregion
 
+                List<string> correos = new List<string>();
+                correos.Add(icliente.Correo);
+                correos.Add(senderMail);
+
                 sendMail(
                     subject: "Notificación de PQRS",
                     body: Contenido,
-                    recipientMail: new List<string> { icliente.Correo }
+                    recipientMail: correos
                 );
 
                 return true;

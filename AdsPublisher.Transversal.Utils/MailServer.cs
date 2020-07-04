@@ -14,6 +14,7 @@ namespace AdsPublisher.Transversal.Utils
         protected string host { get; set; }
         protected int port { get; set; }
         protected bool ssl { get; set; }
+        protected string mailAdmon { get; set; }
 
         protected void initializeSmtpClient()
         {

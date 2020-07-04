@@ -47,10 +47,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdsPublisher.Services.WebAp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{812BA84D-D505-479D-98C5-10FF684E4354}"
 	ProjectSection(SolutionItems) = preProject
+		C:\Program Files\Microsoft SQL Server\MSSQL14.SQLEXPRESS\MSSQL\Backup\AdsPublisher-05-Jun-2020.bak = C:\Program Files\Microsoft SQL Server\MSSQL14.SQLEXPRESS\MSSQL\Backup\AdsPublisher-05-Jun-2020.bak
 		ScriptsBD\Scripts.sql = ScriptsBD\Scripts.sql
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdsPublisher.Services.Job", "AdsPublisher.Services.Job\AdsPublisher.Services.Job.csproj", "{16E11A3A-69D7-4E52-9F73-FEF389178F84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdsPublisher.Services.Job", "AdsPublisher.Services.Job\AdsPublisher.Services.Job.csproj", "{16E11A3A-69D7-4E52-9F73-FEF389178F84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
